@@ -35,8 +35,10 @@ class PasswordGenerator:
         elif charset == 4:
             self.charset = self.numbers
         elif charset == 5:
-            self.charset = self.lower_characters + self.numbers
+            self.charset = self.upper_characters + self.numbers
         elif charset == 6:
+            self.charset = self.lower_characters + self.numbers
+        elif charset == 7:
             self.charset = self.lower_characters + self.upper_characters + self.numbers
         else:
             self.charset == None
@@ -50,3 +52,13 @@ class PasswordGenerator:
             password += self.charset[x]
 
         return password
+
+
+class Case:
+    UPPERS_ONLY = 1
+    LOWERS_ONLY = 2
+    LOWERS_UPPERS = 3
+    NUMBERS_ONLY = 4
+    UPPERS_NUMBERS = 5
+    LOWERS_NUMBERS = 6
+    UPPERS_LOWERS_NUMBERS = 7
