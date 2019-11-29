@@ -35,20 +35,23 @@ class PasswordGenerator:
         elif charset == 4:
             self.charset = self.numbers
         elif charset == 5:
-            self.charset = self.lower_characters + self.numbers
+            self.charset = self.upper_characters + self.numbers
         elif charset == 6:
+            self.charset = self.lower_characters + self.numbers
+        elif charset == 7:
             self.charset = self.lower_characters + self.upper_characters + self.numbers
         else:
-            self.charset == None
+            self.charset is None
             print('Invalid charset selected')
 
     def generate_password(self):
         password = ""
-        try:
-            length = int(input("Enter password length: "))
-            for x in range(length):
-                x = randint(0, self.charset.__len__())
-                password += self.charset[x]
-        except ValueError:
-            print("Enter whole number")
-        return password
+        while True:
+            try:
+                length = int((input("Enter password length: ")))
+                for x in range(length):
+                    x = randint(0, self.charset.__len__())
+                    password += self.charset[x]
+                return password
+            except ValueError:
+                print("Enter whole number")
