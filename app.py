@@ -14,17 +14,6 @@ class PasswordGenerator:
     #charset
     charset = None
 
-    charset_constants = {
-        'UPPERS_ONLY': 1,
-        'LOWERS_ONLY':2,
-        'LOWERS_UPPERS': 3,
-        'NUMBERS_ONLY':4,
-        'UPPERS_NUMBERS':5,
-        'LOWERS_NUMBERS':6,
-        'UPPERS_LOWERS_NUMBERS':7
-    }
-
-
     def set_charset(self, charset):
         """
           Sets the type of character set to be
