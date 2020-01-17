@@ -1,4 +1,4 @@
-from app import PasswordGenerator, Case
+from app import PasswordGenerator
 
 pg = PasswordGenerator()
 pg.set_charset(5)
