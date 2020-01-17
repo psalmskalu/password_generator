@@ -26,6 +26,15 @@ class PasswordGenerator:
 
 
     def set_charset(self, charset):
+        """
+          Sets the type of character set to be
+          used by password geenrator
+
+          Parameters:
+          ---------------------
+          charset (string) - the charset supplied as an instance of Case
+          
+        """
         if charset == 1:
             self.charset = self.upper_characters
         elif charset == 2:
@@ -46,6 +55,13 @@ class PasswordGenerator:
 
 
     def generate_password(self):
+
+        """
+        Performs the computation that genarates a
+        password
+
+        """
+
         password = ""
         for x in range(10):
             x = randint(0, self.charset.__len__())
