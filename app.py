@@ -15,17 +15,16 @@ class PasswordGenerator:
     # charset
     charset = None
 
-    charset_constants = {
-        'UPPERS_ONLY': 1,
-        'LOWERS_ONLY': 2,
-        'LOWERS_UPPERS': 3,
-        'NUMBERS_ONLY': 4,
-        'UPPERS_NUMBERS': 5,
-        'LOWERS_NUMBERS': 6,
-        'UPPERS_LOWERS_NUMBERS': 7
-    }
-
     def set_charset(self, charset):
+        """
+          Sets the type of character set to be
+          used by password geenrator
+
+          Parameters:
+          ---------------------
+          charset (string) - the charset supplied as an instance of Case
+          
+        """
         if charset == 1:
             self.charset = self.upper_characters
         elif charset == 2:
@@ -45,6 +44,13 @@ class PasswordGenerator:
             print('Invalid charset selected')
 
     def generate_password(self):
+
+        """
+        Performs the computation that genarates a
+        password
+
+        """
+
         password = ""
         while True:
             try:
@@ -56,12 +62,11 @@ class PasswordGenerator:
             except ValueError:
                 print("Enter whole number")
 
-
-    class Case:
-        UPPERS_ONLY = 1
-        LOWERS_ONLY = 2
-        LOWERS_UPPERS = 3
-        NUMBERS_ONLY = 4
-        UPPERS_NUMBERS = 5
-        LOWERS_NUMBERS = 6
-        UPPERS_LOWERS_NUMBERS = 7
+class Case:
+    UPPERS_ONLY = 1
+    LOWERS_ONLY = 2
+    LOWERS_UPPERS = 3
+    NUMBERS_ONLY = 4
+    UPPERS_NUMBERS = 5
+    LOWERS_NUMBERS = 6
+    UPPERS_LOWERS_NUMBERS = 7
