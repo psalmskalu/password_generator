@@ -1,4 +1,5 @@
 from random import randint
+import sys
 
 
 class PasswordGenerator:
@@ -12,40 +13,16 @@ class PasswordGenerator:
     # string of numbers
     numbers = '0123456789'
 
+    #string of special characters
+    specials = '@-_+=%^&*#!'
+
     # charset
     charset = None
 
     #charset length - the length of the password string to generate
     charset_length = 0
 
-    def set_charset(self, charset):
-        """
-          Sets the type of character set to be
-          used by password geenrator
-
-          Parameters:
-          ---------------------
-          charset (string) - the charset supplied as an instance of Case
-          
-        """
-        if charset == 1:
-            self.charset = self.upper_characters
-        elif charset == 2:
-            self.charset = self.lower_characters
-        elif charset == 3:
-            self.charset = self.upper_characters + self.lower_characters
-        elif charset == 4:
-            self.charset = self.numbers
-        elif charset == 5:
-            self.charset = self.upper_characters + self.numbers
-        elif charset == 6:
-            self.charset = self.lower_characters + self.numbers
-        elif charset == 7:
-            self.charset = self.lower_characters + self.upper_characters + self.numbers
-        else:
-            self.charset is None
-            print('Invalid charset selected')
-
+    
     def generate_password(self):
 
         """
@@ -67,14 +44,42 @@ class PasswordGenerator:
         try:
             self.charset_length = int(length)
         except ValueError:
-            print("Enter a whole number")
+            sys.exit("Enter a whole number")
 
 
-class Case:
-    UPPERS_ONLY = 1
-    LOWERS_ONLY = 2
-    LOWERS_UPPERS = 3
-    NUMBERS_ONLY = 4
-    UPPERS_NUMBERS = 5
-    LOWERS_NUMBERS = 6
-    UPPERS_LOWERS_NUMBERS = 7
+    def set_charset_types(self, type):
+        
+        try:
+
+            #convert charset types into a list
+            type_list = list(type)
+
+            #placeholder for concatenated charset string
+            charset = ""
+
+            #an internal function to  ensure that the user does not enter wrong values
+            self.clean_list(type_list)
+
+            if len(type_list) > 4:
+                sys.exit("Too many charset types specified")
+
+            if 'lowers' in type_list:
+                charset += self.lower_characters
+            if 'uppers' in type_list:
+                charset += self.upper_characters
+            if 'numbers' in type_list:
+                charset += self.numbers
+            if 'specials' in type_list:
+               charset += self.specials
+
+            self.charset = charset
+
+        except ValueError:
+            print("Charset types should be a list of values")
+
+
+    def clean_list(self, type_list):
+        for item in type_list:
+            if item != 'lowers' and item != 'uppers' and item != 'numbers' and item != 'specials':
+                sys.exit("Unrecognized charset type \'" + item + "\'")
+
