@@ -15,6 +15,9 @@ class PasswordGenerator:
     # charset
     charset = None
 
+    #charset length - the length of the password string to generate
+    charset_length = 0
+
     def set_charset(self, charset):
         """
           Sets the type of character set to be
@@ -53,14 +56,19 @@ class PasswordGenerator:
 
         password = ""
         while True:
-            try:
-                length = int((input("Enter password length: ")))
-                for x in range(length):
-                    x = randint(0, (self.charset.__len__() - 1))
-                    password += self.charset[x]
-                return password
-            except ValueError:
-                print("Enter whole number")
+            for x in range(self.charset_length):
+                x = randint(0, (self.charset.__len__() - 1))
+                password += self.charset[x]
+            return password
+            
+
+
+    def set_charset_length(self, length):
+        try:
+            self.charset_length = int(length)
+        except ValueError:
+            print("Enter a whole number")
+
 
 class Case:
     UPPERS_ONLY = 1
